@@ -10,14 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.cs40333.rmcmulle.lab2_rmcmulle.MainActivity">
 
-    <TextView
-        android:text="Hello World!!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="50sp"
-        android:textColor="@color/navy"
-        android:id="@+id/textView" />
+        android:id="@+id/scheduleListView" />
 </RelativeLayout>

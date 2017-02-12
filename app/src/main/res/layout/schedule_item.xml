@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/schedule_item"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:id="@+id/game_date">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pepper"
+            android:id="@+id/team_img" />
+
+        <TextView
+            android:text="Team Name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/team_name"
+            android:typeface="serif"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_weight="0.62" />
+
+        <TextView
+            android:text="Team Date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView5"
+            android:typeface="serif"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>
