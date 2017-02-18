@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:weightSum="1">
+
+    <TextView
+        android:text="@string/venue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/venue_info"
+        android:layout_weight="0.07" />
+
+    <TextView
+        android:text="Location Info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/location_info"
+        android:layout_weight="0.07" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/florida_state"
+            android:layout_weight=".20"
+            android:id="@+id/team_1_img" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="77dp"
+            android:layout_weight=".10"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <TextView
+                android:text="@string/school1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:id="@+id/team1_school" />
+
+            <TextView
+                android:text="@string/name1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:id="@+id/team1_name"
+                android:layout_weight="0.72" />
+
+            <TextView
+                android:text="@string/record1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:id="@+id/team1_record" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="77dp"
+            android:layout_weight=".10"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="@string/score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:id="@+id/score" />
+
+            <TextView
+                android:text="@string/score_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:id="@+id/score_time" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="78dp"
+            android:layout_weight=".10"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <TextView
+                android:text="@string/school2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:id="@+id/team2_school" />
+
+            <TextView
+                android:text="@string/name2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:id="@+id/team2_name"
+                android:layout_weight="0.62" />
+
+            <TextView
+                android:text="@string/record2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:id="@+id/team2_record" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/notre_dame"
+            android:layout_weight=".20"
+            android:id="@+id/imageView3" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="308dp"
+        android:layout_weight="0.70">
+
+        <Button
+            android:text="@string/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/camera"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+</LinearLayout>
