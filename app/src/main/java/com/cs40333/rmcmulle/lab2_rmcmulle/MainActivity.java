@@ -17,37 +17,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String imgs[] = {"ohio_state","florida_state","wake_forrest","boston_college",          // 0
-                        "north_carolina_state","georgia_tech","virginia","chicago_state"};
-        String teams[] = {"Ohio State", "Florida State", "Wake Forest", "Boston College",       // 1
-                "North Carolina State", "Georgia Tech","North Virginia", "Chicago State"};
-        String dates[] = {"Feb 11","Feb 14","Feb 18","Feb 26","March 1","March 4",              // 2
-                "March 7","March 16"};
-        String days[] = {"Saturday","Tuesday","Saturday","Friday","Monday","Thursday","Sunday", // 3
-                "Wednesday"};
-        String times[] = {"6:00 PM", "8:00 PM", "7:00 PM", "8:00 PM", "6:00 PM", "8:00 PM",     // 4
-                "7:00 PM", "8:00 PM"};
-        String names[] = {"Buckeyes","Seminoles","Demon Deacons","Eagles","Wolfpack",       // 5
-                "Yellow Jackets","The Virginians","Cougars"};
-        String records[] = {"(21-5)","(24-1)","(18-8)","(19-7)","(20-6)","(15-9)","(14-8)",     // 6
-                "(20-6)"};
-        String scores[] = {"80 - 78","72 - 84", "89 - 101", "68 - 75", "80 - 79", "67 - 80",    // 7
-                "70 - 89","59 - 68"};
-        String score_times[] = {"final","final","final","final","final","final","final",        // 8
-                "final"};
-        String locations[] = {"Purcell Pavillion at the Joyce Center, Notre Dame, Indiana",     // 9
-                "Purcell Pavillion at the Joyce Center, Notre Dame, Indiana",
-                "At Wake Forrest","Purcell Pavillion at the Joyce Center, Notre Dame, Indiana",
-                "At North Carolina State",
-                "Purcell Pavillion at the Joyce Center, Notre Dame, Indiana",
-                "At Virginia",
-                "Purcell Pavillion at the Joyce Center, Notre Dame, Indiana"};
 
-        final ArrayList<String[]> team_info = new ArrayList<String[]>();
-        for (int i = 0 ; i < imgs.length ; i++ ) { // place into string array
-            String[] a = {imgs[i],teams[i],dates[i],days[i],times[i],names[i],records[i],
-            scores[i],score_times[i],locations[i]};
-            team_info.add(a);
+        // Declare List of Teams
+        final ArrayList<Team> team_info = new ArrayList<Team>();
+
+        // Read csv and get teams
+        MyCsvFileReader reader = new MyCsvFileReader(getApplicationContext());
+        ArrayList<String[]> all_teams = reader.readCsvFile(R.raw.schedule);
+
+        // Convert csv to ArrayList<Team>
+        for (int i = 0 ; i < all_teams.size() ; i++) {
+            // declare new team with info from csv
+            Team temp = new Team(all_teams.get(i)[0],all_teams.get(i)[1],all_teams.get(i)[2],all_teams.get(i)[3],
+                    all_teams.get(i)[4],all_teams.get(i)[5],all_teams.get(i)[6],all_teams.get(i)[7],all_teams.get(i)[8],all_teams.get(i)[9]);
+
+            // add team to list
+            team_info.add(temp);
         }
 
         ScheduleAdapter scheduleAdapter = new ScheduleAdapter(this, team_info);

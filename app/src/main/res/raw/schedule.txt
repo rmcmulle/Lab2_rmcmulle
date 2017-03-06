@@ -1,0 +1,8 @@
+ohio_state,Ohio State,Feb 11,Saturday,6:00 PM,Buckeyes,(21-5),80 - 78,final,Purcell Pavilion at the Joyce Center
+florida_state,Florida State,Feb 14,Tuesday,8:00 PM,Seminoles,(24-1),72 - 84,final,Purcell Pavilion at the Joyce Center
+wake_forrest,Wake Forrest,Feb 18,Saturday,7:00 PM,Demon Deacons,(18-8),89 - 101,final,At Wake Forrest
+boston_college,Boston College,Feb 26,Friday,8:00 PM,Eagles,(19-7),68 - 75,final,Purcell Pavilion at the Joyce Center
+north_carolina_state,North Carolina State,Mar 1,Monday,6:00 PM,Wolfpack,(20-6),80 - 79,final,Purcell Pavilion at the Joyce Center
+georgia_tech,Georgia Tech,Mar 4,Thursday,8:00 PM,Yellow Jackets,(15-9),67 - 80,final,At Georgia Tech
+virginia,North Virginia,Mar 7,Sunday,7:00 PM,The Virginians,(14-8),70 - 89,final,At Virginia
+chicago_state,Chicago State,Mar 16,Wednesday,8:00 PM,Cougars,(20-6),59 - 68,final,Purcell Pavilion at the Joyce Center

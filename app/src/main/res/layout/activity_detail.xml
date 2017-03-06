@@ -143,6 +143,15 @@
             android:id="@+id/camera"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pepper"
+            android:id="@+id/photo_taken"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 </LinearLayout>
