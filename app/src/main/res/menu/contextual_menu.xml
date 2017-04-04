@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/contextual_menu"
+    android:name="contextual_menu"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/context_men"
+        android:title="Men"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <item android:id="@+id/context_women"
+        android:orderInCategory="100"
+        android:title="Women"
+        app:showAsAction="never"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <item android:id="@+id/context_on_campus"
+        android:orderInCategory="100"
+        android:title="On Campus"
+        app:showAsAction="never"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <item android:id="@+id/context_off_campus"
+        android:orderInCategory="100"
+        android:title="Off Campus"
+        app:showAsAction="never"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</menu>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyMaterialTheme" parent="SuperMaterialTheme">
+
+        <!--<item name="colorPrimary">@color/colorPrimaryMaterial</item>-->
+        <!--<item name="textColorSecondary">@color/secondaryTextMaterial</item>-->
+        <!--<item name="colorPrimaryDark">@color/primaryDarkMaterial</item>-->
+        <!--<item name="colorPrimaryLight">@color/primaryLightMaterial</item>-->
+        <!--&lt;!&ndash;<item name="accent">@color/accentMaterial</item>&ndash;&gt;-->
+        <!--<item name="textColorPrimary">@color/primaryTextMaterial</item>-->
+        <!--&lt;!&ndash;<item name="icons">@color/iconsMaterial</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="divider">@color/dividerMaterial</item>&ndash;&gt;-->
+
+        <item name="colorPrimary">@color/colorPrimaryMaterial</item>
+        <item name="colorPrimaryDark">@color/primaryDarkMaterial</item>
+        <item name="colorAccent">@color/accentMaterial</item>
+
+    </style>
+</resources>

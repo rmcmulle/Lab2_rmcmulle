@@ -8,4 +8,15 @@
     <color name="navy">#000080</color>
     <color name="grey">#D8D8D8</color>
     <color name="black">#000000</color>
+
+    <!-- New material design colors-->
+    <color name="colorPrimaryMaterial">#9C27B0</color>
+    <color name="secondaryTextMaterial">#757575</color>
+    <color name="primaryDarkMaterial">#7B1FA2</color>
+    <color name="primaryLightMaterial">#E1BEE7</color>
+    <color name="accentMaterial">#7C4DFF</color>
+    <color name="primaryTextMaterial">#212121</color>
+    <color name="iconsMaterial">#FFFFFF</color>
+    <color name="dividerMaterial">#BDBDBD</color>
+
 </resources>

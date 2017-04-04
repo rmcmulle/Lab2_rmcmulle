@@ -32,6 +32,8 @@ import static java.security.AccessController.getContext;
 
 public class DetailActivity extends Activity {
 
+    final int CAMERA_REQUEST = 1337;
+
     @Override
     public void onCreate (Bundle bundle) {
 
@@ -49,7 +51,6 @@ public class DetailActivity extends Activity {
         TextView score_time = (TextView) findViewById(R.id.score_time);
         ImageView team_img = (ImageView) findViewById(R.id.team_1_img);
         ImageView nd_img = (ImageView) findViewById(R.id.imageView3);
-        final int CAMERA_REQUEST = 1337;
 
         // Click Listener
         final View.OnClickListener click = new View.OnClickListener() {
@@ -69,34 +70,34 @@ public class DetailActivity extends Activity {
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
 
-            private String getPictureName() {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                String timestamp = sdf.format(new Date());
-                return "BestMoments" + timestamp + ".jpg";
-            }
+//            private String getPictureName() {
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+//                String timestamp = sdf.format(new Date());
+//                return "BestMoments" + timestamp + ".jpg";
+//            }
 
-            protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-                if (resultCode == RESULT_OK) {
-                    if (requestCode == CAMERA_REQUEST) {
-                        Intent photoGalleryIntent = new Intent(Intent.ACTION_PICK);
-                        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-
-                        String pictureDirectoryPath = pictureDirectory.getPath();
-                        Uri imageUri = Uri.parse(pictureDirectoryPath);
-                        InputStream inputStream;
-                        try {
-                            inputStream = getContentResolver().openInputStream(imageUri);
-                            Bitmap image = BitmapFactory.decodeStream(inputStream);
-                            ImageView imgView = (ImageView) findViewById(R.id.photo_taken);
-                            imgView.setImageBitmap(image);
-
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-            }
+//            protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//                if (resultCode == RESULT_OK) {
+//                    if (requestCode == CAMERA_REQUEST) {
+//                        Intent photoGalleryIntent = new Intent(Intent.ACTION_PICK);
+//                        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+//
+//                        String pictureDirectoryPath = pictureDirectory.getPath();
+//                        Uri imageUri = Uri.parse(pictureDirectoryPath);
+//                        InputStream inputStream;
+//                        try {
+//                            inputStream = getContentResolver().openInputStream(imageUri);
+//                            Bitmap image = BitmapFactory.decodeStream(inputStream);
+//                            ImageView imgView = (ImageView) findViewById(R.id.photo_taken);
+//                            imgView.setImageBitmap(image);
+//
+//                        } catch (FileNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                }
+//            }
         };
 
         // Attach listener
@@ -130,5 +131,32 @@ public class DetailActivity extends Activity {
         resID = getResources().getIdentifier("notre_dame" , "drawable", getPackageName());
         nd_img.setImageResource(resID);
 
+    }
+    private String getPictureName() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = sdf.format(new Date());
+        return "BestMoments" + timestamp + ".jpg";
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST) {
+                Intent photoGalleryIntent = new Intent(Intent.ACTION_PICK);
+                File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+                String pictureDirectoryPath = pictureDirectory.getPath();
+                Uri imageUri = Uri.parse(pictureDirectoryPath);
+                InputStream inputStream;
+                try {
+                    inputStream = getContentResolver().openInputStream(imageUri);
+                    Bitmap image = BitmapFactory.decodeStream(inputStream);
+                    ImageView imgView = (ImageView) findViewById(R.id.photo_taken);
+                    imgView.setImageBitmap(image);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
     }
 }
