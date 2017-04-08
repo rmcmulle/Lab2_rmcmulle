@@ -3,6 +3,7 @@ package com.cs40333.rmcmulle.lab2_rmcmulle;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
@@ -11,12 +12,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.support.design.widget.CoordinatorLayout;
@@ -42,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // DATABASE CREATION
-        dbHelper = new DBHelper(getApplicationContext());
+        dbHelper = new DBHelper(getApplicationContext()); // create DB
+        dbHelper.onUpgrade(dbHelper.getWritableDatabase(), 1, 2); // ensure blank DB
+
+        // VIEWS
+        ListView scheduleListView = (ListView) findViewById(R.id.scheduleListView);
 
         // Create Action Bar
         Toolbar myToolBar = (Toolbar) findViewById(R.id.toolbar);
@@ -56,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         MyCsvFileReader reader = new MyCsvFileReader(getApplicationContext());
         ArrayList<String[]> all_teams = reader.readCsvFile(R.raw.schedule);
 
-        // Convert csv to ArrayList<Team>
+        // Convert csv to Database
         for (int i = 0; i < all_teams.size(); i++) {
             // ADD TO DATABASE
             fn_insert("Team",new String[]{all_teams.get(i)[0], all_teams.get(i)[1], all_teams.get(i)[2], all_teams.get(i)[3],
@@ -65,18 +72,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // PRINT DATABASE TEST
-//        Cursor myCursor = dbHelper.getAllEntries("Team",new String[]{"team_logo","team_name","team_mascot"});
-//        if (myCursor.moveToFirst()) {
-//            System.out.println(myCursor.getString(myCursor.getColumnIndex("team_logo")));
-//            System.out.println(myCursor.getString(myCursor.getColumnIndex("team_name")));
-//            System.out.println(myCursor.getString(myCursor.getColumnIndex("team_mascot")));
-//        }
 //        System.out.println(getTableAsString(dbHelper,"Team"));
         // END TEST
 
-        ScheduleAdapter scheduleAdapter = new ScheduleAdapter(this, team_info);
-        ListView scheduleListView = (ListView) findViewById(R.id.scheduleListView);
-        scheduleListView.setAdapter(scheduleAdapter);
+//        ScheduleAdapter scheduleAdapter = new ScheduleAdapter(this, team_info);
+//        scheduleListView.setAdapter(scheduleAdapter);
 
         AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
 
@@ -85,7 +85,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
 
                 //create a bundle object using the following:
-                intent.putExtra("team", team_info.get(position)); // where al is your ArrayList holding team information.
+
+//                String[] cols = new String[]{"_id"};
+                // TEST OUTPUT
+//                Log.d("POSITION: ", Integer.toString(position));
+//                Cursor temp = dbHelper.getSelectEntries("Team",cols,"team_name = ",null);
+//                Log.d("_ID",temp.getString(temp.getColumnIndex("_id")));
+
+//                intent.putExtra("team", dbHelper.getSelectEntries("Team",cols,"1",null).getString(position)); // where al is your ArrayList holding team information.
+                intent.putExtra("team", position + 1); // where al is your ArrayList holding team information.
 
                 //start the activity using the intent with the bundle you just created.
                 startActivity(intent);
@@ -170,12 +178,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-
     public boolean onContextItemSelected(MenuItem item) {
 
         int item_id = item.getItemId();
 
-        /* TO BE IMPLEMENTED LATER */
+//        TO BE IMPLEMENTED LATER
 //        if (item_id == R.id.women) {
 //
 //        } else if (item_id == R.id.men) {
@@ -189,24 +196,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    private void populateListView() {
-//        //Get names of all the fields of the table Books
+    private void populateListView() {
+        //Get names of all the fields of the Team table
+        String[] fields = {"_id","team_logo","team_name","team_date"};
 //        String[] fields = dbHelper.getTableFields("Team");
-//
-//        //Get all the book entries from the table Books
-//        Cursor cursor = dbHelper.getAllEntries("Team", fields);
-//
-//        //Get ids of all the widgets in the custom layout for the listview
-//        int[] item_ids = new int[] {R.id.book_id, R.id.book_name};
-//
-//        //Create the cursor that is going to feed information to the listview
-//        SimpleCursorAdapter bookCursor;
-//
-//        //The adapter for the listview gets information and attaches it to appropriate elements
-//        bookCursor = new SimpleCursorAdapter(getBaseContext(),
-//                R.layout.item_layout, cursor, fields, item_ids, 0);
-//        books_list.setAdapter(bookCursor);
-//    }
+//        for (int i = 0 ; i < fields.length ; i++) {
+//            Log.d("FIELDS: ",fields[i]);
+//        }
+
+
+        //Get all the team entries from the Team table
+        Cursor cursor = dbHelper.getAllEntries("Team", fields);
+//        Log.d("CURSOR: ",DatabaseUtils.dumpCursorToString(cursor));
+
+        //Get ids of all the widgets in the custom layout for the listview
+//        int[] item_ids = new int[] {-1, R.id.team_name};
+        int[] item_ids = new int[] {-1, R.id.team_img, R.id.team_name, R.id.team_date};
+
+        //Create the cursor that is going to feed information to the listview
+        SimpleCursorAdapter teamCursorAdapter;
+
+        //The adapter for the listview gets information and attaches it to appropriate elements
+        teamCursorAdapter = new SimpleCursorAdapter(this,
+                R.layout.schedule_item, cursor, fields, item_ids,0);
+
+        // Set ViewBinder for images
+        teamCursorAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                if (view.getId() == R.id.team_img) {
+                    ImageView IV=(ImageView) view;
+                    int resID = getApplicationContext().getResources().getIdentifier(cursor.getString(columnIndex), "drawable",  getApplicationContext().getPackageName());
+                    IV.setImageResource(resID);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        ListView listView = (ListView) findViewById(R.id.scheduleListView);
+        listView.setAdapter(teamCursorAdapter);
+    }
 
     public void fn_insert(String db, String[] info) {
         ContentValues contentValues = new ContentValues();
@@ -221,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
         contentValues.put("team_score_time", info[8]);
         contentValues.put("team_location", info[9]);
         dbHelper.insertData(db, contentValues);
-        //populateListView();
+        populateListView();
     }
 
 

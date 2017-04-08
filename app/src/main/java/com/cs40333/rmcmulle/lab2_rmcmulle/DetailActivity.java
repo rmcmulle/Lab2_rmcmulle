@@ -3,12 +3,14 @@ package com.cs40333.rmcmulle.lab2_rmcmulle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +41,9 @@ public class DetailActivity extends Activity {
 
         super.onCreate(bundle);
         setContentView(R.layout.activity_detail);
+
+        // REINSTANTIATE DATABASE
+        DBHelper dbHelper= new DBHelper(getApplicationContext());
 
         // INITIALIZE WIDGETS
 
@@ -107,23 +112,44 @@ public class DetailActivity extends Activity {
         // SET VALUES
 
         // Text Values
-        Team stringInfo = (Team) getIntent().getSerializableExtra("team");
+        int id = getIntent().getIntExtra("team", 1);
 
 //        for (int i = 0 ; i < stringInfo.length ; i++) {
 //            System.out.println(stringInfo[i]);
 //        }
 
-        String game_time = stringInfo.getTeamDate() + ", " + stringInfo.getTeamDay() + ", " + stringInfo.getTeamScoreTime();
+        // QUERY VALUES FROM DATABASE
+        Cursor team_cursor = dbHelper.getSelectEntries("Team",new String[]{"*"},
+                "_id = " + Integer.toString(id),null);
+
+        String team_location = team_cursor.getString(team_cursor.getColumnIndex("team_location"));
+        String team_name = team_cursor.getString(team_cursor.getColumnIndex("team_name"));
+        String team_mascot = team_cursor.getString(team_cursor.getColumnIndex("team_mascot"));
+        String team_record = team_cursor.getString(team_cursor.getColumnIndex("team_record"));
+        String team_score = team_cursor.getString(team_cursor.getColumnIndex("team_score"));
+        String team_score_time = team_cursor.getString(team_cursor.getColumnIndex("team_score_time"));
+        String team_date = team_cursor.getString(team_cursor.getColumnIndex("team_date"));
+        String team_day = team_cursor.getString(team_cursor.getColumnIndex("team_day"));
+        String team_time = team_cursor.getString(team_cursor.getColumnIndex("team_time"));
+        String team_logo = team_cursor.getString(team_cursor.getColumnIndex("team_logo"));
+
+        // SET DETAIL ACTIVITY VALUES
+        location_info.setText(team_location);
+        team1_school.setText(team_name);
+        team1_name.setText(team_mascot);
+        team1_record.setText(team_record);
+        score.setText(team_score);
+        score_time.setText(team_score_time);
+
+        // TEST OUTPUTS
+//        Log.d("GAME INFO: ",team_name + ", " + team_mascot + ", " + team_score + ", " + team_record);
+
+        // VENUE INFO
+        String game_time = team_date + ", " + team_day + ", " + team_time;
         venue_info.setText(game_time);
-        location_info.setText(stringInfo.getTeamLocation());
-        team1_school.setText(stringInfo.getTeamName());
-        team1_name.setText(stringInfo.getTeamMascot());
-        team1_record.setText(stringInfo.getTeamRecord());
-        score.setText(stringInfo.getTeamScore());
-        score_time.setText(stringInfo.getTeamScoreTime());
 
         // Team img
-        String mDrawableName = stringInfo.getTeamLogo();
+        String mDrawableName = team_logo;
         int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
         team_img.setImageResource(resID);
 
