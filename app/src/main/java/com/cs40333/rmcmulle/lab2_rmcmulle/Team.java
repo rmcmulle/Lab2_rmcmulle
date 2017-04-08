@@ -20,8 +20,8 @@ public class Team implements Serializable {
 
     public Team(String team_logo, String team_name, String team_date, String team_day, String team_time, String team_mascot, String team_record,
                      String team_score, String team_score_time, String team_location) {
-        setTeamName(team_name);
         setTeamLogo(team_logo);
+        setTeamName(team_name);
         setTeamDate(team_date);
         setTeamDay(team_day);
         setTeamTime(team_time);

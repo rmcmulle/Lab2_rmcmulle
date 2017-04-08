@@ -10,14 +10,14 @@
         android:icon="@drawable/ic_share"
         android:orderInCategory="100"
         android:title="Share"
-        app:showAsAction="never"
+        app:showAsAction="always"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <item android:id="@+id/sync"
         android:icon="@drawable/ic_sync"
         android:orderInCategory="100"
         android:title="Sync"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <item android:id="@+id/settings"
