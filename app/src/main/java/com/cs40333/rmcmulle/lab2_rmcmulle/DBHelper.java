@@ -27,6 +27,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public static String COL_SCORE_TIME = "team_score_time";
     public static String COL_LOCATION = "team_location";
 
+    public static String TABLE_IMG = "Img";
+    public static String COL_TEAM_ID = "team_id";
+    public static String COL_IMG = "img";
+    public static String COL_URI = "uri";
+    public static String COL_IMG_DATE = "date";
+
     public DBHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -37,11 +43,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 COL_LOGO + " TEXT, " + COL_NAME + " TEXT, " + COL_DATE + " TEXT, " + COL_DAY + " TEXT, " +
                 COL_TIME + " TEXT, " +COL_MASCOT + " TEXT, " + COL_RECORD + " TEXT, " + COL_SCORE
                 + " TEXT, " + COL_SCORE_TIME + " TEXT, " + COL_LOCATION + " TEXT) ");
+
+        db.execSQL("CREATE TABLE " + TABLE_IMG + " ( " + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_TEAM_ID + " TEXT, " + COL_IMG + " TEXT, " + COL_URI + " TEXT, " +
+                COL_IMG_DATE + " TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE if exists " + TABLE_TEAM );
+        db.execSQL("DROP TABLE if exists " + TABLE_IMG );
         onCreate(db);
     }
 

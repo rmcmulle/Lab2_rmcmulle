@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Check
+        //Log.d("MAIN","Made it!!");
+
         // DATABASE CREATION
         dbHelper = new DBHelper(getApplicationContext()); // create DB
         dbHelper.onUpgrade(dbHelper.getWritableDatabase(), 1, 2); // ensure blank DB

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cs40333.rmcmulle.lab2_rmcmulle">
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,16 +18,18 @@
         </activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".GalleryActivity"></activity>
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-feature android:name="android.hardware.camera" android:required="true" />
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="Lab2_rmcmulle.fileprovider"
+            android:authorities="com.cs40333.rmcmulle.lab2_rmcmulle"
             android:grantUriPermissions="true"
             android:exported="false">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/filepaths" />
-        </provider><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

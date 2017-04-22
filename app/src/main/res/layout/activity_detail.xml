@@ -137,12 +137,12 @@
         android:layout_weight="0.70">
 
         <Button
-            android:text="@string/camera"
+            android:id="@+id/camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/camera"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:text="Image Gallery" />
 
         <ImageView
             android:layout_width="wrap_content"

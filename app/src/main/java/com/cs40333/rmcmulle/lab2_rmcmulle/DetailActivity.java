@@ -35,6 +35,7 @@ import static java.security.AccessController.getContext;
 public class DetailActivity extends Activity {
 
     final int CAMERA_REQUEST = 1337;
+//    int id = getIntent().getIntExtra("team", 1);
 
     @Override
     public void onCreate (Bundle bundle) {
@@ -61,18 +62,24 @@ public class DetailActivity extends Activity {
         final View.OnClickListener click = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Specify Intent
-//                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivity(cameraIntent);
-
                 // LAB CODE
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File PictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                String pictureName = getPictureName();
-                File imageFile = new File(PictureDirectory, pictureName);
-                Uri pictureUri = Uri.fromFile(imageFile);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, "picture"); // send extra as 'picture'
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                Intent galleryIntent = new Intent(DetailActivity.this, GalleryActivity.class);
+
+                //File PictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                //String pictureName = getPictureName();
+                //File imageFile = new File(PictureDirectory, pictureName);
+                //Uri pictureUri = Uri.fromFile(imageFile);
+                //galleryIntent.putExtra(MediaStore.EXTRA_OUTPUT, "picture"); // send extra as 'picture'
+                //startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
+                // Get team id to add as extra
+                int id = getIntent().getIntExtra("team", 1);
+                galleryIntent.putExtra("id", id); // add team id to intent
+
+                // Check
+                Log.d("TEST: ", "Oh so close");
+
+                startActivity(galleryIntent); // begin gallery activity
             }
 
 //            private String getPictureName() {
