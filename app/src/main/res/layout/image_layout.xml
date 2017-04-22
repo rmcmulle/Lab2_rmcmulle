@@ -13,8 +13,8 @@
         android:id="@+id/col_id"
         android:visibility="invisible"/>
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="150dp"
+        android:layout_height="151dp"
         app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/book_image"
         android:paddingBottom="@dimen/activity_horizontal_margin"
@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/date_tv"
+        android:textSize="12sp"
         android:layout_gravity="center|center_horizontal"/>
 
 </LinearLayout>

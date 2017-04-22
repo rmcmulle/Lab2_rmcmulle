@@ -45,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + " TEXT, " + COL_SCORE_TIME + " TEXT, " + COL_LOCATION + " TEXT) ");
 
         db.execSQL("CREATE TABLE " + TABLE_IMG + " ( " + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL_TEAM_ID + " TEXT, " + COL_IMG + " TEXT, " + COL_URI + " TEXT, " +
+                COL_TEAM_ID + " TEXT, " + COL_IMG + " BLOB, " + COL_URI + " TEXT, " +
                 COL_IMG_DATE + " TEXT)");
     }
 
